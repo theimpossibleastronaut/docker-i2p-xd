@@ -1,0 +1,42 @@
+version: "3.3"
+
+networks:
+  big:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+
+services:
+  i2pd:
+    build: ./i2pd
+    hostname: i2pd
+    ports:
+      - "7070:7070"
+      - "7656:7656"
+      - "4444:4444"
+      - "4447:4447"
+    networks:
+      big:
+        ipv4_address: 172.20.0.2
+  xd:
+    build: ./xd
+    hostname: xd
+    ports:
+      - "1488:1488"
+    environment:
+      WAIT_HOSTS: i2pd:7656
+    links:
+      - "i2pd"
+    networks:
+      big:
+        ipv4_address: 172.20.0.3
+    volumes:
+      - type: volume
+        source: storage
+        target: /storage
+        volume:
+          nocopy: true
+
+volumes:
+  storage:
