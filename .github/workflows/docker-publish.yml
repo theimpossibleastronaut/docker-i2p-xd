@@ -63,7 +63,4 @@ jobs:
         if: ${{ github.event_name != 'pull_request' }}
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
-        run: |
-          for tag in ${TAGS}; do
-            cosign sign --key /path/to/your/private-key.key --skopeo-repo docker://${DOCKER_IMAGE}:${tag} --upload-signature
-          done
+        run:  echo "${TAGS}" | xargs -I {} cosign sign --yes {}
