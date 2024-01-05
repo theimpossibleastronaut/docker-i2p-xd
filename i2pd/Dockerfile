@@ -1,11 +1,11 @@
-FROM debian:buster
+FROM debian:bookworm
 LABEL description="This image is used to run i2pd on a Debian Buster container"
 LABEL maintainer="git@sexybiggetje.nl"
 
 RUN set -ex \
   && apt update \
   && apt install -f -y curl \
-  && curl -Lo i2pd.deb https://github.com/PurpleI2P/i2pd/releases/download/2.29.0/i2pd_2.29.0-1buster1_amd64.deb \
+  && curl -Lo i2pd.deb https://github.com/PurpleI2P/i2pd/releases/download/2.50.0/i2pd_2.50.0-1bookworm1_amd64.deb \
   && apt install -f -y ./i2pd.deb \
   && rm -f i2pd.deb \
   && apt remove -f -y curl \
