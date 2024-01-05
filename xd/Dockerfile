@@ -1,5 +1,5 @@
-FROM debian:buster
-LABEL description="This image is used to run the XD bittorrent client on Debian Buster container"
+FROM debian:bookworm
+LABEL description="This image is used to run the XD bittorrent client on Debian Bookworm container"
 LABEL maintainer="git@sexybiggetje.nl"
 
 ADD torrents.ini /torrents.ini
