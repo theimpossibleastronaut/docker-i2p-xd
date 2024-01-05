@@ -54,9 +54,8 @@ jobs:
         id: build-and-push
         run: |
           docker-compose build
-          DOCKER_IMAGE=$(docker-compose images --format "{{.Repository}}:{{.Tag}}")
-          docker-compose push
-          DIGEST=$(docker inspect --format='{{index .RepoDigests 0}}' ${DOCKER_IMAGE})
+          DOCKER_OUTPUT=$(docker-compose push)
+          DIGEST=$(echo "${DOCKER_OUTPUT}" | grep -oP '(?<=digest: ).*')
           echo "DIGEST=${DIGEST}" >> $GITHUB_ENV
         env:
           DOCKER_BUILDKIT: 1
