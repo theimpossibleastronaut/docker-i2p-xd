@@ -1,5 +1,5 @@
 FROM debian:bookworm
-LABEL description="This image is used to run i2pd on a Debian Buster container"
+LABEL description="This image is used to run i2pd on a Debian Bookworm container"
 LABEL maintainer="git@sexybiggetje.nl"
 
 RUN set -ex \
