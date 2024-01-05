@@ -56,6 +56,7 @@ jobs:
           docker-compose build
           DOCKER_OUTPUT=$(docker-compose push)
           DIGEST=$(echo "${DOCKER_OUTPUT}" | grep -oP '(?<=digest: ).*')
+          echo "${DOCKER_OUTPUT}" 
           echo "DIGEST=${DIGEST}" >> $GITHUB_ENV
         env:
           DOCKER_BUILDKIT: 1
